@@ -7,6 +7,7 @@ script_description([[Теперь вместо нагружающих 3D тек�
 local sampev = require 'lib.samp.events'
 local encoding = require 'encoding'
 local inicfg = require('inicfg')
+local dlstatus = require('moonloader').download_status
 encoding.default = 'cp1251'
 u8 = encoding.UTF8
 
@@ -50,7 +51,7 @@ function main()
 	end)
 end
 
-function update(auto)
+function update()
 	local fpath = os.getenv('TEMP') .. '\\pame-version.json'
 	downloadUrlToFile('https://raw.githubusercontent.com/Akionka/pame/master/version.json', fpath, function(id, status, p1, p2)
 		if status == dlstatus.STATUS_ENDDOWNLOADDATA then
