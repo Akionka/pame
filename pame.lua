@@ -1,7 +1,7 @@
 script_name('PAME')
 script_author('akionka')
-script_version('1.0')
-script_version_number(1)
+script_version('1.1')
+script_version_number(2)
 script_description([[Теперь вместо нагружающих 3D текстов с описанием персонажа у вас будет удобненький pame.]])
 
 local sampev = require 'lib.samp.events'
@@ -62,9 +62,10 @@ function update()
 					version = info.version
 					version_num = info.version_num
 					if version_num > thisScript().version_num then
-						sampAddChatMessage(u8:decode("[PAME]: Найдено объявление. Текущая версия: {2980b9}"..thisScript().version.."{FFFFFF}, новая версия: {2980b9}"..version.."{FFFFFF}. Начинаю закачку"), -1)
+						sampAddChatMessage(u8:decode("[PAME]: Найдено объявление. Текущая версия: {2980b9}"..thisScript().version.."{FFFFFF}, новая версия: {2980b9}"..version.."{FFFFFF}. Начинаю закачку."), -1)
 						lua_thread.create(goupdate)
 					else
+						sampAddChatMessage(u8:decode("[PAME]: У вас установлена самая свежая версия скрипта."), -1)
 						updateinprogess = false
 					end
 				end
@@ -77,9 +78,9 @@ function goupdate()
 	wait(300)
 	downloadUrlToFile("https://raw.githubusercontent.com/Akionka/pame/master/pame.lua", thisScript().path, function(id3, status1, p13, p23)
 		if status1 == dlstatus.STATUS_ENDDOWNLOADDATA then
-			sampAddChatMessage((u8:decode('[PAME]: Новая версия установлена! Чтобы скрипт обновился нужно либо перезайти в игру, либо ...')), -1)
-			sampAddChatMessage((u8:decode('[PAME]: ... если у вас есть автоперезагрузка скриптов, то новая версия уже готова и снизу вы увидите приветственное сообщение')), -1)
-			sampAddChatMessage((u8:decode('[PAME]: Если что-то пошло не так, то сообщите мне об этом в VK или Telegram > vk.com/akionka tele.run/akionka')), -1)
+			sampAddChatMessage(u8:decode('[PAME]: Новая версия установлена! Чтобы скрипт обновился нужно либо перезайти в игру, либо ...'), -1)
+			sampAddChatMessage(u8:decode('[PAME]: ... если у вас есть автоперезагрузка скриптов, то новая версия уже готова и снизу вы увидите приветственное сообщение'), -1)
+			sampAddChatMessage(u8:decode('[PAME]: Если что-то пошло не так, то сообщите мне об этом в VK или Telegram > {2980b0}vk.com/akionka tele.run/akionka{FFFFFF}.'), -1)
 		end
 	end)
 end
