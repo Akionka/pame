@@ -1,7 +1,7 @@
 script_name('PAME')
 script_author('akionka')
-script_version('1.3')
-script_version_number(4)
+script_version('1.4')
+script_version_number(5)
 script_description([[Теперь вместо нагружающих 3D текстов с описанием персонажа у вас будет удобненький pame.]])
 
 local sampev = require 'lib.samp.events'
@@ -26,14 +26,6 @@ end
 function sampev.onCreate3DText(id, color, pos, dist, testLOS, attplayer, attveh, text)
 	if color == -1347440658 and attplayer ~= 65535 and ini.settings.enable and attplayer ~= select(2, sampGetPlayerIdByCharHandle(PLAYER_HANDLE)) then
 		pames[attplayer] = text:gsub("\n", " ")
-		return false
-	end
-end
-
-function sampev.onRemove3DTextLabel(id)
-	string, color, posX, posY, posZ, distance, ignoreWalls, playerId, vehicleId = sampGet3dTextInfoById(id)
-	if color == -1347440658 and playerId ~= 65535 then
-		pames[attplayer] = nil
 		return false
 	end
 end
