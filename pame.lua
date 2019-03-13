@@ -10,6 +10,7 @@ local dlstatus = require('moonloader').download_status
 encoding.default = 'cp1251'
 u8 = encoding.UTF8
 
+local updatesavaliable = false
 local pames = {}
 
 local ini = inicfg.load({
