@@ -1,11 +1,11 @@
 script_name('PAME')
 script_author('akionka')
-script_version('1.5')
-script_version_number(6)
+script_version('1.5.1')
+script_version_number(7)
 
-local sampev = require 'lib.samp.events'
+local sampev   = require 'lib.samp.events'
 local encoding = require 'encoding'
-local inicfg = require('inicfg')
+local inicfg   = require('inicfg')
 local dlstatus = require('moonloader').download_status
 encoding.default = 'cp1251'
 u8 = encoding.UTF8
@@ -77,7 +77,7 @@ function checkupdates(json)
 					os.remove(fpath)
 					if updateversion > thisScript().version_num then
 						updatesavaliable = true
-						sampAddChatMessage(u8:decode("[PAME]: Найдено объявление. Текущая версия: {2980b9}"..thisScript().version.."{FFFFFF}, новая версия: {2980b9}"..updateversion.."{FFFFFF}."), -1)
+						sampAddChatMessage(u8:decode("[PAME]: Найдено объявление. Текущая версия: {2980b9}"..thisScript().version.."{FFFFFF}, новая версия: {2980b9}"..info.version.."{FFFFFF}."), -1)
 						sampAddChatMessage(u8:decode("[PAME]: Используйте команду {2980b0}/pameupdate{FFFFFF}, чтобы обновиться до последней версии."), -1)
 						return true
 					else
